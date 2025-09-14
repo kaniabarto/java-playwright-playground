@@ -1,4 +1,4 @@
-package ovh.kania.m3.l4;
+package ovh.kania.m3;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -42,4 +42,20 @@ public class FirstTest {
 
 
 	}
+
+
+	/* Class name - CamelCase - java convention - example, FirstTest
+	 * Methid name - camelCase - java convention - example firstTest, shoudReturnCorrectPageTiltle - less readable
+	 * better readability - snake_case - python convention - example should_return_correct_page_title - more readable */
+	@Test
+	void should_return_correct_page_title(){
+		Playwright playwright = Playwright.create();
+		Browser browser = playwright.firefox().launch();
+		Page page = browser.newPage();
+		page.navigate("https://playwright.dev/");
+		Assertions.assertThat(page.title()).isEqualTo("Fast and reliable end-to-end testing for modern web apps | Playwright");
+
+
+	}
+
 }
