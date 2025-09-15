@@ -46,6 +46,36 @@ public class AllBrowserTest {
 		//Make screenshot
 		page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshots/webkit.png")));
 	}
+	
+	/* In theory:
+	Object Playwright -> BrowserType -> Browser -> Page. Example:
+	1. Playwright pw = Playwright.create();
+	2. BrowserType bt = pw.chromium();
+	3. Browser browser = bt.launch();  // !!! state of Browser object is shared between all tests. 
+	4. Page page = browser.newPage();
 
+	ALWAYS: our tests should be:
+	1. Fast
+	2. Independent / Isolation
+
+	To avoid share state of Browser object, playwright developed BrowserContext.
+
+	BrowserContext is like "browser in incognito mode" /
+	and it's fast /
+	and it's isolated.
+	
+	So, we should create:
+	Object Playwright -> BrowserType -> Browser -> BrowserContext.
+	1. Playwright pw = Playwright.create();
+	2. BrowserType bt = pw.chromium();
+	3. Browser browser = bt.launch();
+	4. BrowserContext context = browser.newContext();
+	5. context.newPage();
+ 
+	*/
+
+
+
+	
 
 }
