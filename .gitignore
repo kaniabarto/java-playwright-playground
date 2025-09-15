@@ -114,3 +114,5 @@ buildNumber.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,eclipse
 
+# own QA folders
+screenshots/
