@@ -1,5 +1,7 @@
 package ovh.kania.m3.exercise;
 
+import java.util.List;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -7,32 +9,35 @@ import org.junit.jupiter.api.BeforeEach;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
+import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
-import com.microsoft.playwright.BrowserType.LaunchOptions;
 
 public class BaseTest {
 
 	private static Playwright playwright;
-	private static Browser browser;
 	private BrowserContext context;
 	protected Page page;
+	protected static List<BrowserType> browsersList;
+	private Browser browser;
 
 	@BeforeAll
 	static void beforeAll(){
 		playwright = Playwright.create();
-		browser = playwright.firefox().launch(new LaunchOptions().setSlowMo(1000).setHeadless(false));
+		browsersList = List.of(playwright.chromium(), playwright.firefox());
+
 	}
 
 	@BeforeEach
 	void beforeEach(){
-		context = browser.newContext();
-		page = context.newPage();
+		for (BrowserType browserType: browsersList){
+			browser = browserType.launch();
+			page = browser.newPage();
+		}	
 	}
 
 	@AfterEach
 	void afterEach(){
-		context.close();
 	}
 
 	@AfterAll
