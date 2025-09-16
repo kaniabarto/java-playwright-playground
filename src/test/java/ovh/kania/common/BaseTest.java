@@ -9,6 +9,7 @@ import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.BrowserType.LaunchOptions;
 
 public class BaseTest {
 
@@ -20,7 +21,7 @@ public class BaseTest {
 	@BeforeAll
 	static void beforeAll(){
 		playwright = Playwright.create();
-		browser = playwright.firefox().launch();
+		browser = playwright.firefox().launch(new LaunchOptions().setHeadless(false));
 	}
 
 	@BeforeEach
