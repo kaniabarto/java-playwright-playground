@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import com.microsoft.playwright.Page;
 
+import ovh.kania.common.BaseTest;
+
 public class AllBrowserTest extends BaseTest{
 
 	@Test

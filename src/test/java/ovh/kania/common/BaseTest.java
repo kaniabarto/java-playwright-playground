@@ -1,4 +1,4 @@
-package ovh.kania.m3;
+package ovh.kania.common;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
